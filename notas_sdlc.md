@@ -178,3 +178,24 @@ Esta sección es fundamental para entender cómo Git gestiona el trabajo paralel
 
 **En conclusión:** El modelo de ramas de Git es ligero y potente. Dominar estos comandos no solo es necesario para desarrollar, sino que es la base para construir pipelines donde el código se prueba y verifica de forma aislada antes de llegar a producción.
 
+---
+
+### Resumen: CI/CD y la Seguridad en la Construcción
+
+El caso de **SolarWinds** nos enseñó que no basta con proteger el código; hay que proteger **toda la cadena de suministro**. El atacante no entró por la puerta principal, sino que inyectó código malicioso en el proceso de compilación (*build*).
+
+**Los componentes de una arquitectura segura:**
+
+* **Build Orchestrator:** Es el "cerebro" (ej. GitLab, Jenkins). Coordina todo el flujo, desde que el desarrollador hace `push` hasta que el software se despliega.
+* **Build Agents:** Son los "obreros" (los ejecutores). Reciben las instrucciones del orquestador para compilar, probar y empaquetar el código.
+* **Fundamentos de visibilidad:** Para que un equipo sea ágil y seguro, todos deben ver qué está pasando. La **visibilidad máxima** es vital para que un desarrollador detecte rápido si algo cambió en el build que él no esperaba.
+
+**La estrategia de defensa (Defensa en profundidad):**
+
+* **Aislamiento y Segmentación:** Si un agente de build es comprometido (como en SolarWinds), la segmentación evita que el atacante salte a toda la red o al repositorio central.
+* **Control de Acceso:** Aplicar el principio de *menor privilegio* a los sistemas de automatización. Si el orquestador no necesita acceso a internet, no se lo des.
+* **Red:** Dividir el entorno de construcción en diferentes zonas de red para limitar el movimiento lateral.
+
+**En conclusión:** El CI/CD es una herramienta de productividad, pero desde el punto de vista de seguridad, es un **objetivo de alto valor**. Si proteges tu orquestador y tus agentes con segmentación y control estricto, estás cerrando una de las puertas de entrada más peligrosas para los atacantes.
+
+
